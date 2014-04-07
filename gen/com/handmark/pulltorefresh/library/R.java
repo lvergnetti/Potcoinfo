@@ -35,20 +35,18 @@ public final class R {
 		public static final int ptrSubHeaderTextAppearance = 0x7f01000b;
 	}
 	public static final class dimen {
-		public static final int header_footer_left_right_padding = 0x7f060004;
-		public static final int header_footer_top_bottom_padding = 0x7f060005;
-		public static final int indicator_corner_radius = 0x7f060002;
-		public static final int indicator_internal_padding = 0x7f060003;
-		public static final int indicator_left_padding = 0x7f060001;
+		public static final int header_footer_left_right_padding = 0x7f060003;
+		public static final int header_footer_top_bottom_padding = 0x7f060004;
+		public static final int indicator_corner_radius = 0x7f060001;
+		public static final int indicator_internal_padding = 0x7f060002;
 		public static final int indicator_right_padding = 0x7f060000;
 	}
 	public static final class drawable {
 		public static final int default_ptr_flip = 0x7f020005;
 		public static final int default_ptr_rotate = 0x7f020006;
-		public static final int default_ptr_rotate3 = 0x7f020007;
-		public static final int indicator_arrow = 0x7f020009;
-		public static final int indicator_bg_bottom = 0x7f02000a;
-		public static final int indicator_bg_top = 0x7f02000b;
+		public static final int indicator_arrow = 0x7f020008;
+		public static final int indicator_bg_bottom = 0x7f020009;
+		public static final int indicator_bg_top = 0x7f02000a;
 	}
 	public static final class id {
 		public static final int both = 0x7f050003;
