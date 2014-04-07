@@ -14,5 +14,6 @@ public class Coinmarketcap {
 	
 	public double price;
 		
+	//Testing to see maybe
 
 }
