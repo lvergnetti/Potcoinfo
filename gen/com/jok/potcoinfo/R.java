@@ -187,6 +187,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int refresh_background=0x7f020011;
         public static final int refresh_background_image=0x7f020012;
         public static final int usd=0x7f020013;
+        public static final int wallet_actionbar=0x7f020014;
     }
     public static final class id {
         public static final int address=0x7f05001e;
@@ -226,11 +227,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pull_to_refresh_progress=0x7f050027;
         public static final int pull_to_refresh_sub_text=0x7f050029;
         public static final int pull_to_refresh_text=0x7f050028;
-        public static final int qr=0x7f05002a;
+        public static final int qr=0x7f05002b;
         public static final int rotate=0x7f050007;
         public static final int scanner_balance=0x7f050020;
         public static final int scrollView1=0x7f05000c;
         public static final int scrollview=0x7f05000b;
+        public static final int wallet=0x7f05002a;
         public static final int webview=0x7f05000a;
     }
     public static final class layout {

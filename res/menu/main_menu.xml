@@ -1,12 +1,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
+     <item android:id="@+id/wallet"
+       	 android:title="wallet"
+       	 android:showAsAction="always"
+       	 android:icon="@drawable/wallet_actionbar">
+    </item>
     
     <item android:id="@+id/qr" 
         android:title="Scan" 
         android:showAsAction="always" 
-        android:icon="@drawable/qr_actionbar"/>
+        android:icon="@drawable/qr_actionbar">
+    </item>
     
-   
-    
+  
 
 </menu>
