@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
         marketIcon.setImageAlpha(0);
         v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
         
-        //HEY JOK
+        //HEY LEE
         
         
         

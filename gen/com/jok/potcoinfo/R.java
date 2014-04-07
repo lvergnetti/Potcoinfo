@@ -157,12 +157,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f060005;
-        public static final int activity_vertical_margin=0x7f060006;
-        public static final int header_footer_left_right_padding=0x7f060003;
-        public static final int header_footer_top_bottom_padding=0x7f060004;
-        public static final int indicator_corner_radius=0x7f060001;
-        public static final int indicator_internal_padding=0x7f060002;
+        public static final int activity_horizontal_margin=0x7f060006;
+        public static final int activity_vertical_margin=0x7f060007;
+        public static final int header_footer_left_right_padding=0x7f060004;
+        public static final int header_footer_top_bottom_padding=0x7f060005;
+        public static final int indicator_corner_radius=0x7f060002;
+        public static final int indicator_internal_padding=0x7f060003;
+        public static final int indicator_left_padding=0x7f060001;
         public static final int indicator_right_padding=0x7f060000;
     }
     public static final class drawable {
@@ -173,19 +174,20 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int btc=0x7f020004;
         public static final int default_ptr_flip=0x7f020005;
         public static final int default_ptr_rotate=0x7f020006;
-        public static final int ic_launcher=0x7f020007;
-        public static final int indicator_arrow=0x7f020008;
-        public static final int indicator_bg_bottom=0x7f020009;
-        public static final int indicator_bg_top=0x7f02000a;
-        public static final int leaf=0x7f02000b;
-        public static final int logo=0x7f02000c;
-        public static final int market_icon=0x7f02000d;
-        public static final int network=0x7f02000e;
-        public static final int qr_actionbar=0x7f02000f;
-        public static final int qr_addresses=0x7f020010;
-        public static final int refresh_background=0x7f020011;
-        public static final int refresh_background_image=0x7f020012;
-        public static final int usd=0x7f020013;
+        public static final int default_ptr_rotate3=0x7f020007;
+        public static final int ic_launcher=0x7f020008;
+        public static final int indicator_arrow=0x7f020009;
+        public static final int indicator_bg_bottom=0x7f02000a;
+        public static final int indicator_bg_top=0x7f02000b;
+        public static final int leaf=0x7f02000c;
+        public static final int logo=0x7f02000d;
+        public static final int market_icon=0x7f02000e;
+        public static final int network=0x7f02000f;
+        public static final int qr_actionbar=0x7f020010;
+        public static final int qr_addresses=0x7f020011;
+        public static final int refresh_background=0x7f020012;
+        public static final int refresh_background_image=0x7f020013;
+        public static final int usd=0x7f020014;
     }
     public static final class id {
         public static final int address=0x7f05001e;
