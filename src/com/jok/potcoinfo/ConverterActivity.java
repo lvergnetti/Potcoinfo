@@ -28,6 +28,9 @@ import com.jok.potcoinfo.sources.Mintpal;
 
 public class ConverterActivity extends Activity{
 	
+	//SPINNER GETS VALUES 1 2 OR 3
+	//MULTIPLIER IS WHATEVER IS ENTERED
+	
 
     StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
     int firstRun=1;
@@ -48,21 +51,8 @@ public class ConverterActivity extends Activity{
 		BitcoinAverage bitavg = gson.fromJson(reader, BitcoinAverage.class);
 		return bitavg.bitcoin_price;
 	}
-	
-	public void convertCurrency(int currency){
+
 		
-		switch (currency){
-			case 1:
-				//POT
-				
-			case 2:
-				//BTC
-			case 3:
-				//USD
-		
-		}
-		
-	}
 	
 
 	private InputStream retrieveStream(String url) {
@@ -93,15 +83,17 @@ public class ConverterActivity extends Activity{
 
 	 
     private class loadStats extends AsyncTask<String, Void, String> {
-    	
+    	double multiplier;
     	double price;
     	double priceUsd;
-  
-        @Override
+    	int currency;  //1 = POT  2 = BTC  3 = USD
+    	@Override
         protected String doInBackground(String... params) {
-            price=getMintpalStats().getLast_price();
+        	//INITIALIZE multiplier
+        	//INITILZIE currency
+        	price=getMintpalStats().getLast_price();
             priceUsd=getBitcoinPrice(); 
-
+            
             String highlowlast ="";
 			return highlowlast;
             
@@ -111,8 +103,35 @@ public class ConverterActivity extends Activity{
         @Override
         protected void onPostExecute(String result) {
         	v.vibrate(45);
-        
-            
+        	
+            switch (currency){
+			case 1:
+				//POT
+				//GET USD
+				//output (multiplier*(price * priceUsd))
+				//GET BTC
+				//output (multiplier*price);
+				break;
+				
+				
+			case 2:
+				//BTC
+				//GET POT
+				//output (multiplier*(1/price))
+				//GET USD
+				//output (multiplier*(priceUsd))
+				break;
+				
+			case 3:
+				//USD
+				//GET POT 
+				//output (multiplier*(1/(price * priceUsd)))
+				//GET BTC
+				//output (multiplier*(1/priceUsd))
+				break;
+		}
+		
+	
             TextView pullText = (TextView)findViewById(R.id.pull_to_refresh_text);
        	    pullText.setTextColor(Color.parseColor("#f1f1f1"));
             PullToRefreshScrollView pullToRefreshView = (PullToRefreshScrollView) findViewById(R.id.scrollView1);
@@ -120,7 +139,7 @@ public class ConverterActivity extends Activity{
         }
         @Override
         protected void onPreExecute() {
-        	
+        
         	
         	TextView market_value = (TextView)findViewById(R.id.market_value);
         	if(firstRun==1){
