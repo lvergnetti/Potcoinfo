@@ -1,9 +1,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-     <item android:id="@+id/wallet"
-       	 android:title="wallet"
+     <item android:id="@+id/convert"
+       	 android:title="Convert"
        	 android:showAsAction="always"
-       	 android:icon="@drawable/wallet_actionbar">
+       	 android:icon="@drawable/convert_actionbar">
     </item>
     
     <item android:id="@+id/qr" 

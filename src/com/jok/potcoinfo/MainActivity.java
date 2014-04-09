@@ -319,8 +319,14 @@ private InputStream retrieveStream(String url) {
            
             case R.id.qr:
           	  startActivity(new Intent(MainActivity.this, ScannerActivity.class));
-            default:
-                return super.onOptionsItemSelected(item);
+          	return super.onOptionsItemSelected(item);
+          	
+            case R.id.convert:
+              startActivity(new Intent(MainActivity.this, ConverterActivity.class));
+              return super.onOptionsItemSelected(item);
+            
+            default:return super.onOptionsItemSelected(item);
+                
         }
     }
 
