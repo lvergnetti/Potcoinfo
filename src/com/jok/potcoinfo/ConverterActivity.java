@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.text.DecimalFormat;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -107,11 +109,19 @@ public class ConverterActivity extends Activity{
             getActionBar().setDisplayUseLogoEnabled(true);
             getActionBar().setLogo(R.drawable.logo);
             
+            
             EditText multi_text =(EditText)findViewById(R.id.multiplyer);
             multi_text.setTextColor(Color.parseColor("#3ca748"));
             multi_text.setBackgroundResource(R.drawable.actionbar_background);
             multi_text.setTypeface(chunk);
             
+            
+            
+            TextView conText1=(TextView)findViewById(R.id.converted_text_1);
+        	TextView conText2=(TextView)findViewById(R.id.converted_text_2);
+        	conText1.setText("0.00");
+        	conText2.setText("0.00");
+        	
     		TextView pullText = (TextView)findViewById(R.id.pull_to_refresh_text);
             pullText.setTypeface(chunk);
             pullText.setTextSize(25);
@@ -143,22 +153,7 @@ public class ConverterActivity extends Activity{
 		BitcoinAverage bitavg = gson.fromJson(reader, BitcoinAverage.class);
 		return bitavg.bitcoin_price;
 	}
-		
-		public void outputConversions(double converted1, double converted2){
-			
-			Typeface chunk = Typeface.createFromAsset(getAssets(),"fonts/Chunkfive.ttf");
-			
-			TextView conText1 =(TextView)findViewById(R.id.converted_text_1);
-			conText1.setText(Double.toString(converted1));
-			conText1.setTypeface(chunk);
-			conText1.setTextColor(Color.parseColor("#f1f1f1"));
-			
-			TextView conText2 =(TextView)findViewById(R.id.converted_text_2);
-			conText2.setText(Double.toString(converted2));
-			conText2.setTypeface(chunk);
-			conText2.setTextColor(Color.parseColor("#d5c12b"));
-		}
-			
+
 		private InputStream retrieveStream(String url) {
         
         DefaultHttpClient client = new DefaultHttpClient(); 
@@ -189,6 +184,7 @@ public class ConverterActivity extends Activity{
     	double multiplier;  //1 = POT  2 = BTC  3 = USD
     	double converted1;
     	double converted2;  
+    	Typeface chunk = Typeface.createFromAsset(getAssets(),"fonts/Chunkfive.ttf");
     	@Override
         protected String doInBackground(String... params) {
         	if(firstRun==1){
@@ -214,22 +210,57 @@ public class ConverterActivity extends Activity{
         	//POT
         	if(currency==1){
         		converted1=multiplier*priceInBTC;
+    			TextView conText1 =(TextView)findViewById(R.id.converted_text_1);
+    			conText1.setText(Double.toString(converted1));
+    			conText1.setTypeface(chunk);
+    			conText1.setTextColor(Color.parseColor("#f1f1f1"));
+    			
+    			DecimalFormat defusd = new DecimalFormat("#,###.000");
     			converted2=multiplier*(priceInBTC*btcInUSD);
-    			outputConversions(converted1, converted2);
+    			TextView conText2 =(TextView)findViewById(R.id.converted_text_2);
+    			conText2.setText(defusd.format(converted2));
+    			conText2.setTypeface(chunk);
+    			conText2.setTextColor(Color.parseColor("#d5c12b"));
         	}
         	//BTC
         	else if(currency==2){
-        		converted1=multiplier*btcInUSD;
-        		converted2=multiplier*(1/priceInBTC);
-        		outputConversions(converted1, converted2);
+        		
         	}
         	//USD
         	else if(currency==3){
-        		converted1=multiplier*(1/(btcInUSD*priceInBTC));
-        		converted2=multiplier*(1/btcInUSD);
-        		outputConversions(converted1,converted2);
+        		
         	}
         	
+            switch (currency){
+			case 1:
+				//converted1=multiplier*priceBTC;
+				//TextView conText1 =(TextView)findViewById(R.id.converted_text_1);
+				//conText1.setText(Double.toString(converted1));
+				//output (multiplier*price);
+				//GET USD
+				//output (multiplier*(price * priceUsd))
+				
+				break;
+				
+				
+			case 2:
+				//BTC
+				//GET POT
+				//output (multiplier*(1/price))
+				//GET USD
+				//output (multiplier*(priceUsd))
+				break;
+				
+			case 3:
+				//USD
+				//GET POT 
+				//output (multiplier*(1/(price * priceUsd)))
+				//GET BTC
+				//output (multiplier*(1/priceUsd))
+				break;
+		}
+		
+	
             TextView pullText = (TextView)findViewById(R.id.pull_to_refresh_text);
        	    pullText.setTextColor(Color.parseColor("#f1f1f1"));
             PullToRefreshScrollView pullToRefreshView = (PullToRefreshScrollView) findViewById(R.id.converterScrollView1);
