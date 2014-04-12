@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.text.DecimalFormat;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -107,11 +109,19 @@ public class ConverterActivity extends Activity{
             getActionBar().setDisplayUseLogoEnabled(true);
             getActionBar().setLogo(R.drawable.logo);
             
+            
             EditText multi_text =(EditText)findViewById(R.id.multiplyer);
             multi_text.setTextColor(Color.parseColor("#3ca748"));
             multi_text.setBackgroundResource(R.drawable.actionbar_background);
             multi_text.setTypeface(chunk);
             
+            
+            
+            TextView conText1=(TextView)findViewById(R.id.converted_text_1);
+        	TextView conText2=(TextView)findViewById(R.id.converted_text_2);
+        	conText1.setText("0.00");
+        	conText2.setText("0.00");
+        	
     		TextView pullText = (TextView)findViewById(R.id.pull_to_refresh_text);
             pullText.setTypeface(chunk);
             pullText.setTextSize(25);
@@ -205,9 +215,10 @@ public class ConverterActivity extends Activity{
     			conText1.setTypeface(chunk);
     			conText1.setTextColor(Color.parseColor("#f1f1f1"));
     			
+    			DecimalFormat defusd = new DecimalFormat("#,###.000");
     			converted2=multiplier*(priceInBTC*btcInUSD);
     			TextView conText2 =(TextView)findViewById(R.id.converted_text_2);
-    			conText2.setText(Double.toString(converted2));
+    			conText2.setText(defusd.format(converted2));
     			conText2.setTypeface(chunk);
     			conText2.setTextColor(Color.parseColor("#d5c12b"));
         	}
