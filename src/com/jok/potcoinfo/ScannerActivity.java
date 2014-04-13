@@ -13,7 +13,10 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -191,6 +194,10 @@ private InputStream retrieveStream(String url) {
         @Override
         protected void onPostExecute(String result) {
         	
+        	SharedPreferences prefs = getSharedPreferences("AddressList", Context.MODE_PRIVATE);
+        	Editor e = prefs.edit();
+        	e.putString("StoredList", ADDRESS);
+        	e.commit();
         	ImageView qrimage = (ImageView)findViewById(R.id.imageView1);
         	qrimage.setAlpha(1000);
         	
@@ -231,6 +238,7 @@ private InputStream retrieveStream(String url) {
        	    pullText.setTextColor(Color.parseColor("#f1f1f1"));
             PullToRefreshScrollView pullToRefreshView = (PullToRefreshScrollView) findViewById(R.id.scrollView1);
             pullToRefreshView.onRefreshComplete();
+            startActivity(new Intent(ScannerActivity.this, AddressListActivity.class));
         }
         @Override
         protected void onPreExecute() {

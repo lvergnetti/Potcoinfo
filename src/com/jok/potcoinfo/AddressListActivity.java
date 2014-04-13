@@ -4,13 +4,16 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jok.potcoinfo.sources.Address;
 
 public class AddressListActivity extends Activity{
-	
+	boolean previousSave;
+	ListView listView;
 	/*
 	 * JOK!!
 	 * need layout for this in setLayout();
@@ -22,11 +25,29 @@ public class AddressListActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_address_list);
+        listView = (ListView) findViewById(R.id.list);
         setLayout();
-        Address[] addressList = getAddressList();
-        for(int i=0;i<addressList.length;i++){
-        	Address address = addressList[i];
-        	addItemToListView(address);
+        SharedPreferences prefs = this.getSharedPreferences("AddressList",Context.MODE_PRIVATE);
+        String storedList = prefs.getString("StoredList", null);
+        String[] addresses = null;
+        if (storedList!=null){
+	        Address[] addressList = getAddressList();
+	        for(int i=0;i<addressList.length;i++){
+	        	Address address = addressList[i];
+	        	
+	        	addresses[i] = address.address;
+	        }
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+              android.R.layout.simple_list_item_1, android.R.id.text1, addresses);
+            listView.setAdapter(adapter);
+            
+            
+	        
+        }
+        else {
+        	//Do Nothing
         }
      }
 	
@@ -38,8 +59,8 @@ public class AddressListActivity extends Activity{
 	public Address[] getAddressList(){
 		Address[] addressList=null;
 		SharedPreferences prefs = this.getSharedPreferences("AddressList", Context.MODE_PRIVATE);
-		String storedList = prefs.getString("StoredList", "None");
-		if (storedList!="None"){
+		String storedList = prefs.getString("StoredList", null);
+		if (storedList!=null){
 			GsonBuilder gsonBuilder = new GsonBuilder();
 			Gson gson = gsonBuilder.create();
 			addressList = gson.fromJson(storedList, Address[].class);
