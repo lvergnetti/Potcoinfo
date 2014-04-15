@@ -30,11 +30,13 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.jok.potcoinfo.intents.IntentIntegrator;
 import com.jok.potcoinfo.intents.IntentResult;
+import com.jok.potcoinfo.sources.Address;
 import com.jok.potcoinfo.sources.BitcoinAverage;
 import com.jok.potcoinfo.sources.Mintpal;
 public class ScannerActivity extends Activity {
@@ -196,7 +198,24 @@ private InputStream retrieveStream(String url) {
         	
         	SharedPreferences prefs = getSharedPreferences("AddressList", Context.MODE_PRIVATE);
         	Editor e = prefs.edit();
-        	e.putString("StoredList", ADDRESS);
+        	Address address = new Address();
+        	address.address = ADDRESS;
+        
+        	String storedList = prefs.getString("StoredList", null);
+        	Gson gson = new Gson();
+        	
+        	Address[] addresses = {};
+        	if (storedList == null){
+        		addresses[0] = address;
+        	}
+        	else{
+        		GsonBuilder b = new GsonBuilder();
+        		gson = b.create();
+        		addresses = gson.fromJson(storedList, Address[].class);
+        		addresses[addresses.length] = address;
+        	}
+        	String newJson = gson.toJson(addresses);
+        	e.putString("StoredList", newJson);
         	e.commit();
         	ImageView qrimage = (ImageView)findViewById(R.id.imageView1);
         	qrimage.setAlpha(1000);

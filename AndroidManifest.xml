@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme" >
         
         <activity
-            android:name="com.jok.potcoinfo.MainActivity"
+            android:name="com.jok.potcoinfo.AddressListActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -38,7 +38,7 @@
            	android:screenOrientation="portrait">
         </activity>
         <activity 
-           	android:name="com.jok.potcoinfo.AddressListActivity"
+           	android:name="com.jok.potcoinfo.MainActivity"
            	android:label="@string/app_name"
            	android:screenOrientation="portrait">
         </activity>

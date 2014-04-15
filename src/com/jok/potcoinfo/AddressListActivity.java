@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -21,6 +22,7 @@ public class AddressListActivity extends Activity{
 	 * 
 	 * 
 	 */
+	   StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +32,7 @@ public class AddressListActivity extends Activity{
         setLayout();
         SharedPreferences prefs = this.getSharedPreferences("AddressList",Context.MODE_PRIVATE);
         String storedList = prefs.getString("StoredList", null);
-        String[] addresses = null;
+        String[] addresses = {};
         if (storedList!=null){
 	        Address[] addressList = getAddressList();
 	        for(int i=0;i<addressList.length;i++){
@@ -57,8 +59,8 @@ public class AddressListActivity extends Activity{
 	}
 	
 	public Address[] getAddressList(){
-		Address[] addressList=null;
-		SharedPreferences prefs = this.getSharedPreferences("AddressList", Context.MODE_PRIVATE);
+		Address[] addressList={};
+		SharedPreferences prefs = getSharedPreferences("AddressList", Context.MODE_PRIVATE);
 		String storedList = prefs.getString("StoredList", null);
 		if (storedList!=null){
 			GsonBuilder gsonBuilder = new GsonBuilder();
