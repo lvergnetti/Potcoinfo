@@ -27,7 +27,7 @@
         </activity>
         
          <activity 
-           	android:name="com.jok.potcoinfo.ScannerActivity"
+           	android:name="com.jok.potcoinfo.AddressActivity"
            	android:label="@string/scan_name"
            	android:screenOrientation="portrait">
         </activity>
@@ -42,6 +42,7 @@
            	android:label="@string/app_name"
            	android:screenOrientation="portrait">
         </activity>
+        
          
         <activity 
             android:name="com.google.zxing.client.android.CaptureActivity"
