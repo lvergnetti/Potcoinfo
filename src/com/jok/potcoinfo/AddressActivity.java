@@ -255,29 +255,7 @@ private InputStream retrieveStream(String url) {
 
         @Override
         protected void onPostExecute(String result) {
-        	/*
-        	SharedPreferences prefs = getSharedPreferences("AddressList", Context.MODE_PRIVATE);
-        	Editor e = prefs.edit();
-        	Address address = new Address();
-        	address.address = stringAddress;
-        
-        	String storedList = prefs.getString("StoredList", null);
-        	Gson gson = new Gson();
-        	
-        	Address[] addresses = {};
-        	if (storedList == null){
-        		addresses[0] = address;
-        	}
-        	else{
-        		GsonBuilder b = new GsonBuilder();
-        		gson = b.create();
-        		addresses = gson.fromJson(storedList, Address[].class);
-        		addresses[addresses.length] = address;
-        	}
-        	String newJson = gson.toJson(addresses);
-        	e.putString("StoredList", newJson);
-        	e.commit();
-        	*/
+
         	ImageView qrimage = (ImageView)findViewById(R.id.imageView1);
         	qrimage.setAlpha(1000);
         	
@@ -348,8 +326,8 @@ private InputStream retrieveStream(String url) {
 		    ImageView dollar = (ImageView)findViewById(R.id.dollar);
 		    dollar.setAlpha(0);
 		    ImageView btc = (ImageView)findViewById(R.id.btc);
-		    btc.setAlpha(0);
-		    
+		    btc.setAlpha(0.0f);
+		   
         }
 
         @Override
